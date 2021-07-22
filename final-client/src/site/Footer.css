@@ -1,0 +1,13 @@
+#footer {
+  margin-top: 5rem;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #c17c74;
+  color: white;
+  text-align: center;
+}
+.spacer {
+  height: 10rem;
+}

@@ -1,0 +1,167 @@
+@import url("https://fonts.googleapis.com/css2?family=Cormorant:wght@400&display=swap");
+
+body {
+  margin: 0;
+  font-family: "Cormorant", sans-serif;
+  font-weight: 200;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-image: url("../src/assets/home.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100%;
+}
+#registerDiv {
+  font-size: 15px;
+  text-align: center;
+}
+#loginDiv {
+  font-size: 20px;
+  text-align: center;
+  color: rgb(43, 111, 51);
+}
+/* 
+.current {
+  margin-left: auto;
+  margin-right: auto;
+  opacity: 0.9;
+  border: 3px solid rgb(96, 133, 100);
+}
+
+.mysub {
+  margin-left: auto;
+  margin-right: auto;
+} */
+
+/* #boardtitle {
+  text-align: center;
+} */
+h1.Logo {
+  font-family: "Cormorant", serif;
+  color: rgb(38, 108, 46);
+  text-align: center;
+  text-shadow: 10px, 10px rgb(133, 182, 139);
+  font-size: 80px;
+  font-weight: 500;
+  letter-spacing: 10px;
+  background-size: auto;
+  min-height: 100px;
+  margin: 0;
+  border-bottom: 0.75px solid black;
+}
+
+span.MuiButton-label {
+  font-family: "Cormorant", sans-serif;
+  font-weight: 300;
+}
+
+#Intro {
+  font-family: "Cormorant", serif;
+  font-size: 35px;
+  letter-spacing: 10px;
+  margin: auto;
+  width: 60%;
+  font-weight: 555;
+  text-align: center;
+  margin-top: 3rem;
+  margin-bottom: 2rem;
+}
+
+#footer {
+  position: fixed;
+  margin-top: 5rem;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  font-family: "Cormorant", sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  text-align: center;
+}
+.spacer {
+  height: 10rem;
+}
+
+/* #toggle {
+  margin: auto;
+  width: 50%;
+  text-align: center;
+  padding: 0 0 40px 0;
+} */
+
+#login {
+  font-family: "Cormorant", sans-serif;
+  font-weight: 800;
+  font-style: bold;
+}
+
+#welcome {
+  font-family: "Cormorant", sans-serif;
+  font-weight: 800;
+  font-style: bold;
+}
+
+p {
+  font-family: "Cormorant", serif;
+  font-weight: 300;
+}
+
+button.MuiButtonBase-root.MuiButton-root.MuiButton-outlined:hover {
+  background-color: #254f17;
+}
+
+input.MuiInputBase-input.MuiInput-input {
+  font-family: "Cormorant", serif;
+  font-weight: 400;
+}
+
+th.MuiTableCell-root.MuiTableCell-head.MuiTableCell-alignCenter {
+  font-family: "Cormorant", serif;
+  font-weight: 700;
+  font-style: bold;
+}
+
+td.MuiTableCell-root.MuiTableCell-body.MuiTableCell-alignCenter {
+  font-family: "Cormorant", serif;
+  font-weight: 200;
+}
+
+#profileCreateDiv {
+  margin: auto;
+  width: 50%;
+  text-align: center;
+  border: 1px solid black;
+}
+
+div.MuiCardActions-root.MuiCardActions-spacing {
+  margin: auto;
+  width: 50%;
+  align-items: center;
+  padding-bottom: 20px;
+}
+
+#profileEditDiv {
+  margin: auto;
+  width: 50%;
+  text-align: center;
+  border: 0.5px solid black;
+}
+
+#subscriptionCreateDiv {
+  margin: auto;
+  width: 50%;
+  text-align: center;
+  border: 0.5px solid black;
+}
+
+button.MuiButtonBase-root.MuiButton-root.MuiButton-contained {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+#subscriptionEditDiv {
+  margin: auto;
+  width: 50%;
+  text-align: center;
+  border: 0.5px solid black;
+}
