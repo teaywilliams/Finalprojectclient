@@ -17,43 +17,44 @@ export class Navbar extends Component<AcceptedProps, {}> {
   render() {
     return (
       <div className="mainNav">
-        <div id="navContainer"></div>
+        {/* <div id="navContainer"></div> */}
         <Toolbar style={{ display: "flex", justifyContent: "space-between" }}>
-          <Button style={{ margin: "1rem 3rem" }}>
+          <Button style={{ fontSize: 30, margin: "1rem 3rem" }}>
             <Link style={{ color: "#000000" }} to="/profile/mine">
               {" "}
               My Boards
             </Link>
           </Button>
-          <Button style={{ margin: "1rem 3rem" }}>
+          <Button style={{ fontSize: 30, margin: "1rem 3rem" }}>
             <Link style={{ color: "#000000" }} to="/profile/add">
               {" "}
               Add a Board
             </Link>
           </Button>
-          <Button style={{ margin: "1rem 3rem" }}>
-            <Link style={{ color: "#000000" }} to="/profile/update">
+          {/* <Button
+          style={{ fontSize: 22, margin: "1rem 3rem" }}>
+            <Link style={{ color: "#000000" }} to="/profile/mine">
               {" "}
               Update a Board
             </Link>
-          </Button>
-          <Button style={{ margin: "1rem 3rem" }}>
+          </Button> */}
+          <Button style={{fontSize: 30, margin: "1rem 3rem" }}>
             <Link style={{ color: "#000000" }} to="/subscription/signup">
               Subscribe
             </Link>
           </Button>
-          <Button style={{ margin: "1rem 3rem" }}>
+          <Button style={{fontSize: 30, margin: "1rem 3rem" }}>
             <Link style={{ color: "#000000" }} to="/subscription/mine">
               My Subscription
             </Link>
           </Button>
-          <Button style={{ margin: "1rem 3rem" }}>
-            <Link style={{ color: "#000000" }} to="/subscription/update">
+          {/* <Button style={{ fontSize: 22, margin: "1rem 3rem" }}>
+            <Link style={{ color: "#000000" }} to="/subscription/update/:id">
               Edit my Subscription
             </Link>
-          </Button>
+          </Button> */}
           <Button
-            style={{ margin: "1rem 3rem" }}
+            style={{ fontSize: 30, margin: "1rem 3rem" }}
             onClick={this.props.clearUser}
           >
             <Link style={{ color: "#000000" }} to="/home">

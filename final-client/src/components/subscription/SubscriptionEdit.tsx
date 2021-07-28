@@ -2,14 +2,15 @@ import React, { Component } from 'react';
 import { TextField, Button } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import { SubscriptionDetails } from '../../Interfaces';
-
 import { Edit as EditIcon, Delete as DeleteIcon } from '@material-ui/icons';
-import APIURL from '../../lib/enviroment';
+import APIURL from '../../helpers/enviroment';
+import {RouteComponentProps, withRouter} from "react-router-dom";
 
 
-type AcceptedProps = {
+interface Params{id: string}
+interface AcceptedProps extends RouteComponentProps<Params>{
   sessionToken: string | null;
-  subscriptionId: number;
+  // subscriptionId: number;
 };
 
 type SubscriptionDataState = {
@@ -23,11 +24,15 @@ type SubscriptionDataState = {
   zip: string;
 };
 
-export class SubscriptionEdit extends Component<AcceptedProps, SubscriptionDataState> {
+class SubscriptionEdit extends Component<AcceptedProps, SubscriptionDataState> {
   constructor(props: AcceptedProps) {
     super(props);
+
+    const string_id= this.props.match.params.id
+        const id= string_id === null || isNaN(parseInt(string_id)) ? 0 : parseInt(string_id)
+console.log(id);
     this.state = {
-      subId: 0,
+      subId: id,
       streetAddress1: '',
       streetAddress2: '',
       city: '',
@@ -61,31 +66,42 @@ export class SubscriptionEdit extends Component<AcceptedProps, SubscriptionDataS
   fetchSubscription = () => {
     if (this.props.sessionToken) {
       console.log('Before SubscriptionEdit Fetch');
-      fetch(`${APIURL}/subscription/mine/${this.props}`, {
+      fetch(`${APIURL}/subscription/mine/${this.state.subId}`, {
         method: 'GET',
         headers: new Headers({
           'Content-Type': 'application/json',
           Authorization: this.props.sessionToken,
+          Accept: "application/json",
         }),
       })
         .then((res) => res.json())
         .then((results) => {
-          this.setState({ streetAddress1: results.streetAddress1 });
-          this.setState({ streetAddress2: results.streetAddress2 });
-          this.setState({ city: results.city });
-          this.setState({ state: results.state });
-          this.setState({ zip: results.zip });
-          console.log('Record Id from SubscriptionEdit', results.id);
+          const subscription = results.subscription
+          console.log('results: ', results)
+
+          this.setState({ 
+            subId: subscription.id,
+            streetAddress1: subscription.streetAddress1,
+           streetAddress2: subscription.streetAddress2, 
+           city: subscription.city,
+            state: subscription.state,
+            zip: subscription.zip })
+
+          console.log('Record Id from SubscriptionEdit', subscription.id);
         })
         .catch((err) => console.log(err));
     }
   };
+  // componentDidMount() {
+  //   this.fetchSubscription();
+  //   console.log('SubscriptionEdit Props', this.props);
+  // }
 
   handleSubmit = (event: any) => {
     console.log('Before SubscriptionEdit Submit');
     if (this.props.sessionToken) {
       event.preventDefault();
-      fetch(`${APIURL}/subscription/update/${this.props.subscriptionId}`, {
+      fetch(`${APIURL}/subscription/update/${this.state.subId}`, {
         method: 'PUT',
         body: JSON.stringify({
           streetAddress1: this.state.streetAddress1,
@@ -102,6 +118,7 @@ export class SubscriptionEdit extends Component<AcceptedProps, SubscriptionDataS
         .then((response) => response.json())
         .then((data) => {
           console.log(data);
+          this.props.history.push('/subscription/mine')
         })
         .catch((err) => console.log(err));
     }
@@ -109,7 +126,7 @@ export class SubscriptionEdit extends Component<AcceptedProps, SubscriptionDataS
 
   handleDelete = (id: number) => {
     if (this.props.sessionToken) {
-      fetch(`${APIURL}/subscription/delete/${this.props.subscriptionId}`, {
+      fetch(`${APIURL}/subscription/delete/${this.state.subId}`, {
         method: 'DELETE',
         headers: new Headers({
           'Content-Type': 'application/json',
@@ -222,4 +239,4 @@ export class SubscriptionEdit extends Component<AcceptedProps, SubscriptionDataS
     );
   }
 }
-export default SubscriptionEdit;
+export default  withRouter(SubscriptionEdit);

@@ -1,8 +1,8 @@
-@import url("https://fonts.googleapis.com/css2?family=Cormorant:wght@400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cormorant:wght@500&display=swap");
 
 body {
   margin: 0;
-  font-family: "Cormorant", sans-serif;
+  font-family: "Cormorant", serif;
   font-weight: 200;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -10,34 +10,37 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   width: 100%;
-}
-#registerDiv {
-  font-size: 15px;
-  text-align: center;
-}
-#loginDiv {
-  font-size: 20px;
-  text-align: center;
-  color: rgb(43, 111, 51);
-}
-/* 
-.current {
-  margin-left: auto;
-  margin-right: auto;
   opacity: 0.9;
-  border: 3px solid rgb(96, 133, 100);
+}
+
+#registerDiv {
+  font-family: "Cormorant", sans-serif;
+  font-weight: 100;
+  text-align: center;
+  letter-spacing: 15px;
+  color: rgb(38, 108, 46);
+  font-size: 25px;
+  /* text-transform: capitalize; */
+}
+
+#loginDiv {
+  text-align: center;
+  /* margin-top: 5%; */
 }
 
 .mysub {
   margin-left: auto;
   margin-right: auto;
-} */
+}
 
-/* #boardtitle {
-  text-align: center;
-} */
+.current {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 h1.Logo {
   font-family: "Cormorant", serif;
+
   color: rgb(38, 108, 46);
   text-align: center;
   text-shadow: 10px, 10px rgb(133, 182, 139);
@@ -53,6 +56,7 @@ h1.Logo {
 span.MuiButton-label {
   font-family: "Cormorant", sans-serif;
   font-weight: 300;
+  /* background-color: rgba(52, 52, 52, 0.434) */
 }
 
 #Intro {
@@ -67,17 +71,6 @@ span.MuiButton-label {
   margin-bottom: 2rem;
 }
 
-#footer {
-  position: fixed;
-  margin-top: 5rem;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  font-family: "Cormorant", sans-serif;
-  font-size: 14px;
-  font-weight: 300;
-  text-align: center;
-}
 .spacer {
   height: 10rem;
 }
@@ -91,8 +84,14 @@ span.MuiButton-label {
 
 #login {
   font-family: "Cormorant", sans-serif;
-  font-weight: 800;
-  font-style: bold;
+  /* font-weight: 800; */
+  /* font-style: bold; */
+  text-align: center;
+  letter-spacing: 10px;
+  color: rgb(43, 111, 51);
+  font-size: 60px;
+  font-family: "Cormorant", sans-serif;
+  font-weight: 200;
 }
 
 #welcome {
@@ -107,7 +106,8 @@ p {
 }
 
 button.MuiButtonBase-root.MuiButton-root.MuiButton-outlined:hover {
-  background-color: #254f17;
+  background-color: #b2e3a2;
+  justify-content: center;
 }
 
 input.MuiInputBase-input.MuiInput-input {
@@ -164,4 +164,16 @@ button.MuiButtonBase-root.MuiButton-root.MuiButton-contained {
   width: 50%;
   text-align: center;
   border: 0.5px solid black;
+}
+
+#footer {
+  position: fixed;
+  margin-top: 5rem;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  font-family: "Cormorant", sans-serif;
+  font-size: 18px;
+  font-weight: 300;
+  text-align: center;
 }

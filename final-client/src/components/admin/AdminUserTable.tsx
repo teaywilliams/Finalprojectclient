@@ -13,7 +13,7 @@ import {
 import { Link } from 'react-router-dom';
 import { UserDetails } from '../../Interfaces';
 import { Edit as EditIcon } from '@material-ui/icons';
-import APIURL from '../../lib/enviroment';
+import APIURL from '../../helpers/enviroment';
 
 
 type AcceptedProps = {

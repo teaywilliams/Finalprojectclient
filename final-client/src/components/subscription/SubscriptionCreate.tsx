@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { TextField, Button } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
-import APIURL from "../../lib/enviroment";
+import APIURL from "../../helpers/enviroment";
 
 type AcceptedProps = {
   sessionToken: string | null;
@@ -32,6 +32,7 @@ const useStyles = makeStyles({
     marginBottom: 12,
   },
 });
+
 
 export default class SubscriptionCreate extends Component<
   AcceptedProps,
@@ -144,7 +145,7 @@ export default class SubscriptionCreate extends Component<
                   this.handleSubmit(e);
                 }}
               >
-                <Link style={{ color: "#000000" }} to="/subscription/mine">
+                <Link style={{ color: "#000000"}} to="/subscription/mine">
                   Sign up!
               </Link>
               </Button>

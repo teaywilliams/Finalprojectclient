@@ -3,7 +3,7 @@ import FormControl from '@material-ui/core/FormControl';
 import { TextField, Button } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import CardActions from '@material-ui/core/CardActions';
-import APIURL from '../../lib/enviroment';
+import APIURL from '../../helpers/enviroment';
 
 
 
@@ -97,9 +97,9 @@ export default class ProfileCreate extends Component<AcceptedProps, ProfileState
                                 }}
                             />
                             <CardActions>
-                                <Link to='/profile/mine'>
-                                    <Button variant='contained' onClick={(e) => { this.handleSubmit(e) }}>Add Board</Button>
-                                </Link>
+                    
+                                    <Button variant='contained' onClick={(e) => { this.handleSubmit(e) }}> <Link to='/profile/mine'/>Add Board</Button>
+                        
                             </CardActions>
                         </div>
                         

@@ -12,7 +12,7 @@ import {
   TableRow,
   Paper,
 } from "@material-ui/core";
-import APIURL from "../../lib/enviroment";
+import APIURL from "../../helpers/enviroment";
 
 type AcceptedProps = {
   sessionToken: string | null;

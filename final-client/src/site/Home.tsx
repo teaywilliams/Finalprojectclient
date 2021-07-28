@@ -10,7 +10,7 @@ const Home: FC<HomeProps> = (props) => {
     
         
             <div className='intro'>
-                <h1 id='Intro'style={{ marginTop: "5rem" }}>
+                <h1 id='Intro'>
                     Welcome to For the Love of Brie
                     <br />
                     A place to share your most inspired charcuterie boards and get creative as you go!

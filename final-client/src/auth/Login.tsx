@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import Button from '@material-ui/core/Button';
-import APIURL from '../lib/enviroment';
+import APIURL from '../helpers/enviroment';
+
 
 type AcceptedProps = {
     updateSessionToken: (newToken: string) => void;
@@ -44,7 +45,7 @@ export class Login extends Component<AcceptedProps, UserState>{
                 })
                 .then((data) => {
                     this.props.updateSessionToken(data.sessionToken);
-                    this.props.updateUserRole(data.user.admin);
+                    this.props.updateUserRole(data.user.isAdmin);
                     console.log("User successfully logged in!");
                 })
                 .catch((err) => alert(err));
@@ -64,11 +65,12 @@ export class Login extends Component<AcceptedProps, UserState>{
     render() {
         return (
             <div id='loginDiv'>
-                <h1 id='login'>Login</h1>
+                <h1 id='login'>Login Here</h1>
                 <ValidatorForm style= {{
                      margin: "auto",
                      width: "50%",
                      padding: "10px",
+                     
                 }}
                     ref="form"
                    
@@ -93,10 +95,11 @@ export class Login extends Component<AcceptedProps, UserState>{
                         validators={["minStringLength:5", "required"]}
                         errorMessages={["required field"]}
                         value={this.state.password}
+                
                     />
                     <br />
-                    <Button variant="outlined" onClick={this.handleSubmit}>
-                        Login
+                    <Button size="small" variant="outlined" onClick={this.handleSubmit}>
+                  Login
                     </Button>
                 </ValidatorForm>
             </div>

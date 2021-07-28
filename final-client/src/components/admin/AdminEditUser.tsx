@@ -1,13 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-// import { FormControl } from '@material-ui/core';
-// import FormControl from '@material-ui/core';
 import { TextField, Button } from '@material-ui/core';
 import { UserDetails, UserData } from '../../Interfaces';
-// import DeleteIcon from '@material-ui/icons/Delete';
-// import EditIcon from '@material-ui/icons/Edit';
 import { Edit as EditIcon, Delete as DeleteIcon } from '@material-ui/icons';
-import APIURL from '../../lib/enviroment';
+import APIURL from '../../helpers/enviroment';
 
 
 type AdminProps = {
@@ -185,7 +181,6 @@ export default class AdminEditUser extends Component<AdminProps, UserState> {
                             </Button>
                     </Link>
                 </div>
-                {/* </FormControl> */}
             </div>
         );
     }

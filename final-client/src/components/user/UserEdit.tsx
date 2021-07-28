@@ -10,7 +10,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import APIURL from '../../lib/enviroment';
+import APIURL from '../../helpers/enviroment';
 
 type AcceptedProps = {
     clearUser: () => void;
@@ -81,7 +81,7 @@ export class UserEdit extends Component<AcceptedProps, UserDataState> {
                     this.setState({ editFirstName: results.firstName });
                     this.setState({ editLastName: results.firstName });
                     this.setState({ editEmail: results.email });
-                    this.setState({ editPassword: results.psswored });
+                    this.setState({ editPassword: results.password });
                     console.log('UserEdit Fetch', results.id);
                 })
                 .catch((err) => console.log(err));

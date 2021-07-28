@@ -21,8 +21,12 @@ export interface ProfileDetails {
     picture: string;
     title: string;
     details: string;
+    
 }
 
+export interface Sub {
+    subscription: SubscriptionDetails [];
+}
 export interface SubscriptionDetails {
     id: number;
     streetAddress1: string;

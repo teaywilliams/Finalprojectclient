@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Button from '@material-ui/core/Button';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
-import APIURL from '../lib/enviroment';
+import APIURL from '../helpers/enviroment';
 
 
 type UserState = {

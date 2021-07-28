@@ -12,11 +12,11 @@ import {
   TableRow,
   Paper,
 } from "@material-ui/core";
-import APIURL from "../../lib/enviroment";
+import APIURL from "../../helpers/enviroment";
 
 type AcceptedProps = {
   sessionToken: string | null;
-  profileId: number;
+  // profileId: number;
   updateProfileId: (newProfileId: number) => void;
 };
 
@@ -84,7 +84,7 @@ export default class AdminProfileTblDel extends Component<
           <TableCell align="right">{profiles.picture}</TableCell>
           <TableCell align="right">{profiles.details}</TableCell>
           <TableCell align="right">
-            <Link style={{ color: "#000000" }} to="/admin/profileEdit">
+            <Link style={{ color: "#000000" }} to={`/admin/profileEdit`}>
               <Button
                 type="submit"
                 variant="contained"

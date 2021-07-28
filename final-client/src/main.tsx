@@ -22,10 +22,6 @@ const theme = createTheme({
 });
 
 
-ReactDOM.render(
-  <React.StrictMode>
-    <MuiThemeProvider theme={theme}>
-    <App /></MuiThemeProvider>
-  </React.StrictMode>,
-  document.getElementById('root')
-)
+
+
+ReactDOM.render(<MuiThemeProvider theme={theme}><App/></MuiThemeProvider>, document.getElementById("root"));

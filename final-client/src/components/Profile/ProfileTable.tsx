@@ -13,7 +13,8 @@ import {
   TableRow,
   Paper,
 } from "@material-ui/core";
-import APIURL from "../../lib/enviroment";
+import APIURL from "../../helpers/enviroment";
+import { Link } from "react-router-dom";
 
 type AcceptedProps = {
   sessionToken: string | null;
@@ -81,6 +82,7 @@ export default class ProfileTable extends Component<
           <TableCell align="center">{profiles.title}</TableCell>
           <TableCell align="center"><img src={profiles.picture} style={{width:'100px'}} /></TableCell>
           <TableCell align="center">{profiles.details}</TableCell>
+          <TableCell><Link to={`/profile/update/${profiles.id}`}>Edit</Link></TableCell>
         </TableRow>
       );
     });
@@ -105,13 +107,16 @@ export default class ProfileTable extends Component<
   render() {
     return (
       <div>
-        
-        <TableContainer className= "current" component={Paper} style={{width:'1000px'}}>
+        <h3
+        style={{
+          textAlign: 'center', 
+          fontSize: '30px', 
+          letterSpacing: '3px',
+          }}>Current Boards</h3>
+        <TableContainer className= "current" component={Paper} style={{width:'1000px', justifyContent: 'center' }}>
           <Table style={styles.table} aria-label="simple table">
             <TableHead>
-            <h3>Current Boards</h3>
               <TableRow id='table'>
-                {/* <TableCell align="center">id</TableCell> */}
                 <TableCell align="center">Board Title</TableCell>
                 <TableCell align="center">Board Image Link</TableCell>
                 <TableCell align="center">Board Details</TableCell>
@@ -120,7 +125,6 @@ export default class ProfileTable extends Component<
             <TableBody>{this.profileMapper()}</TableBody>
           </Table>
         </TableContainer>
-        {/* <ProfileEdit /> */}
       </div>
     );
   }

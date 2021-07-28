@@ -1,20 +1,18 @@
 import React, { Component } from "react";
-// import APIURL from "../../helpers/environment";
-// import { FormControl, TextField, Button } from "@material-ui/core";
 import { TextField, Button } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { ProfileDetails } from "../../Interfaces";
-// import DeleteIcon from "@material-ui/icons/Delete";
-import MenuItem from "@material-ui/core/MenuItem";
-// import EditIcon from "@material-ui/icons/Edit";
 import { Edit as EditIcon, Delete as DeleteIcon } from '@material-ui/icons';
-import APIURL from "../../lib/enviroment";
+import APIURL from "../../helpers/enviroment";
+import {RouteComponentProps, withRouter} from "react-router-dom";
 
 
-type AcceptedProps = {
-  sessionToken: string | null;
-  profileId: number | null;
+interface Params{id: string}
+interface AcceptedProps extends RouteComponentProps<Params>{
+    sessionToken: string | null;
+    updateProfileId: (newProfileId: number) => void;
 };
+
 
 type ProfileDataState = {
   profileData: ProfileDetails[];
@@ -26,14 +24,15 @@ type ProfileDataState = {
   profile: any;
 };
 
-export default class AdminProfileEdit extends Component<
-  AcceptedProps,
-  ProfileDataState
-> {
+class AdminProfileEdit extends Component< AcceptedProps, ProfileDataState> {
   constructor(props: AcceptedProps) {
     super(props);
+
+    const string_id= this.props.match.params.id
+    const id= string_id === null || isNaN(parseInt(string_id)) ? 0 : parseInt(string_id)
+
     this.state = {
-      profId: 0,
+      profId: id,
       title: "",
       picture: "",
       details: "",
@@ -61,30 +60,35 @@ export default class AdminProfileEdit extends Component<
   fetchProfile = () => {
     if (this.props.sessionToken) {
       console.log("Before AdminProfileEdit Fetch");
-      fetch(`${APIURL}/profile/one/${this.props.profileId}`, {
+      fetch(`${APIURL}/profile/one/${this.state.profId}`, {
         method: "GET",
         headers: new Headers({
           "Content-Type": "application/json",
           Authorization: this.props.sessionToken,
+          Accept: "application/json",
         }),
       })
         .then((res) => res.json())
         .then((results) => {
-          this.setState({ profId: results.profile.id });
-          this.setState({ title: results.profile.title });
-          this.setState({ picture: results.profile.picture });
-          this.setState({ details: results.profile.details });
-          console.log("Record Id from Profile Edit: ", results.profile.id);
+          const profile = results.profile
+          console.log('results: ', results)
+          this.setState({ 
+            profId: profile.id, 
+            title: profile.title,
+          picture: profile.picture,
+          details: profile.details,
+          profile: profile.profiles,
+         })
         })
         .catch((err) => console.log(err));
     }
   };
 
   handleSubmit = (event: any) => {
-    console.log("As ProfileEdit Update");
+    console.log("As ProfileEdit Update", this.state);
     if (this.props.sessionToken) {
       event.preventDefault();
-      fetch(`${APIURL}profile/updat/${this.props.profileId}`, {
+      fetch(`${APIURL}profile/update/${this.state.profId}`, {
         method: "PUT",
         body: JSON.stringify({
           profile: {
@@ -108,7 +112,7 @@ export default class AdminProfileEdit extends Component<
 
   handleDelete = (id: number) => {
     if (this.props.sessionToken) {
-      fetch(`${APIURL}/profile/${this.props.profileId}`, {
+      fetch(`${APIURL}/profile/${id}`, {
         method: "DELETE",
         headers: new Headers({
           "Content-Type": "application/json",
@@ -160,6 +164,7 @@ export default class AdminProfileEdit extends Component<
             }}
           />
           <div style={{ display: "flex", justifyContent: "space-evenly" }}>
+            
             <Button
               variant="contained"
               onClick={(e) => {
@@ -191,3 +196,5 @@ export default class AdminProfileEdit extends Component<
     );
   }
 }
+
+export default withRouter(AdminProfileEdit);

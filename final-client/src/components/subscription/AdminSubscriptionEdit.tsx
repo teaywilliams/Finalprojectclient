@@ -8,7 +8,7 @@ import { SubscriptionDetails } from "../../Interfaces";
 import MenuItem from "@material-ui/core/MenuItem";
 // import EditIcon from "@material-ui/icons/Edit";
 import { Edit as EditIcon, Delete as DeleteIcon } from '@material-ui/icons';
-import APIURL from "../../lib/enviroment";
+import APIURL from "../../helpers/enviroment";
 
 
 type AcceptedProps = {

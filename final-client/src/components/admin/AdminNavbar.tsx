@@ -19,32 +19,31 @@ export class AdminNavbar extends Component<AcceptedProps, ValueTypes> {
             <div>
                 <div id='adminContainer'>
                     <div style={{ display: 'block', justifyContent: 'flext-start'}} className='header'>
-                        {/* <h3 className='header'>AdminNavbar</h3> */}
-                        {/* <h3>Welcome {this.props.email}</h3> */}
-                        <h5>What would you like to manage?</h5>
+                      
+                        <h1 style={{textAlign: "center", color: "rgba(23, 22, 22, 0.872)"}}>What would you like to manage?</h1>
                     </div>
                 </div>
                 <Toolbar style={{ display: 'flex', justifyContent: 'space-between' }}>
-                    <Button style={{ margin: '1rem 3rem' }}>
-                        <Link style={{ color: '#000000' }} to='/admin/home' >Admin Home</Link>
-                    </Button>
-                    <Button style={{ margin: '1rem 3rem' }}>
+                    {/* <Button style={{ margin: '1rem 3rem' }}>
+                        <Link style={{ color: "rgba(23, 22, 22, 0.872)", fontSize: "30px" }} to='/admin/home' >Admin Home</Link>
+                    </Button> */}
+                    {/* <Button style={{ margin: '1rem 3rem' }}>
                         <Link style={{ color: '#0000000' }} to='/admin/userTable'>
                             User Management
                     </Link>
-                    </Button>
+                    </Button> */}
                     <Button style={{ margin: '1rem 3rem' }}>
-                        <Link style={{ color: '#000000'}} to='/admin/entries'>
+                        <Link style={{ color: "rgba(23, 22, 22, 0.872)", fontSize: "30px" }} to='/admin/profileEdit'>
                             Profile Entries
                     </Link>
                     </Button>
                     <Button style={{ margin: '1rem 3rem' }}>
-                        <Link style={{ color: '#000000' }} to='/admin/subscriptions'>
+                        <Link style={{ color: "rgba(23, 22, 22, 0.872)", fontSize: "30px" }} to='/admin/subscriptionEdit'>
                             Subscriptions
                     </Link>
                     </Button>
                     <Button style={{ margin: '1rem 3rem'}} onClick={this.props.clearUser}>
-                        <Link style={{ color: '#000000' }} to='/user/register'>
+                        <Link style={{ color: "rgba(23, 22, 22, 0.872)", fontSize: "30px" }} to='/user/register'>
                             Logout
                     </Link>
                     </Button>

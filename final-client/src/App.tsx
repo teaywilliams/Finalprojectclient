@@ -6,6 +6,7 @@ import Navbar from '../src/site/Navbar';
 import { Route, BrowserRouter as Router } from 'react-router-dom';
 import Home from '../src/site/Home';
 import SwitchController from '../src/site/SwitchController';
+import Admin from './components/admin/Admin';
 
 type sessionState = {
   sessionToken: string | null;
@@ -22,7 +23,7 @@ export default class FTLOBApp extends Component<{}, sessionState> {
     this.state = {
       sessionToken: "",
       email: "",
-      userRole: "false",
+      userRole: "",
       profileId: 0,
       subscriptionId: 0,
       userId: 0,
@@ -30,10 +31,28 @@ export default class FTLOBApp extends Component<{}, sessionState> {
     this.protectedViews = this.protectedViews.bind(this);
   }
 
+  componentDidMount() {
+    console.log('Mounted');
+    if (localStorage.getItem('firstName')) {
+      this.setState({ email: localStorage.getItem('email') });
+      console.log(this.state.email)
+    }
+    if (localStorage.getItem('sessionToken')) {
+      this.setState({ sessionToken: localStorage.getItem('sessionToken') });
+    }
+    if (localStorage.getItem('userRole')) {
+      this.setState({ userRole: localStorage.getItem('userRole')! })
+      console.log(this.state.userRole);
+      
+    }
+  }
+
   componentDidUpdate() {
     console.log("Updated");
     console.log(`User is admin: ${localStorage.getItem('userRole')}`);
   }
+
+ 
 
   updateUserRole = (newUserRole: string) => {
     if (newUserRole !== null) {
@@ -79,6 +98,18 @@ export default class FTLOBApp extends Component<{}, sessionState> {
     this.setState({ sessionToken: '', userRole: 'false' });
   };
 
+  // protectedViewsAdmin = () => {
+  //   return localStorage.getItem('userRole') === 'true' ? (
+  //     <AdminNavbar
+  //         sessionToken={this.state.sessionToken}
+  //         clearUser={this.clearUser}
+  //         email={this.state.email}
+  //       />
+  //   ) : (
+  //     <Home />
+  //   )
+  // }
+
   protectedViews = () => {
     console.log('userRole: ', this.state.userRole);
     return this.state.sessionToken === localStorage.getItem('sessionToken') ? (
@@ -103,17 +134,20 @@ export default class FTLOBApp extends Component<{}, sessionState> {
         />
         <Home />
       </Route>
-    );
+    )
   };
-  componentDidMount() {
-    console.log('Mounted');
-    if (localStorage.getItem('firstName')) {
-      this.setState({ email: localStorage.getItem('email') });
-    }
-    if (localStorage.getItem('sessionToken')) {
-      this.setState({ sessionToken: localStorage.getItem('sessionToken') });
-    }
-  }
+  // componentDidMount() {
+  //   console.log('Mounted');
+  //   if (localStorage.getItem('firstName')) {
+  //     this.setState({ email: localStorage.getItem('email') });
+  //   }
+  //   if (localStorage.getItem('sessionToken')) {
+  //     this.setState({ sessionToken: localStorage.getItem('sessionToken') });
+  //   }
+  //   if (localStorage.getItem('userRole')) {
+  //     this.setState({ userRole: localStorage.getItem('userRole')! })
+  //   }
+  // }
 
   render() {
     const session = localStorage.getItem('sessionToken');
@@ -122,7 +156,7 @@ export default class FTLOBApp extends Component<{}, sessionState> {
         <header id='main'>
           <h1 className='Logo'>For The Love of Brie</h1>
         </header>
-        <Home/>
+        {/* <Home/> */}
         <Router>
           {!session ? (
             <Auth updateSessionToken={this.updateSessionToken} updateUserRole={this.updateUserRole} />

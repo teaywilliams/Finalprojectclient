@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import APIURL from "../../lib/enviroment";
+import APIURL from "../../helpers/enviroment";
 import { SubscriptionDetails } from "../../Interfaces";
+import { Link } from "react-router-dom";
 
 import {
   Table,
@@ -85,6 +86,7 @@ export default class SubscriptionTable extends Component<
           <TableCell align="center">{subscriptions.city}</TableCell>
           <TableCell align="center">{subscriptions.state}</TableCell>
           <TableCell align="center">{subscriptions.zip}</TableCell>
+          <TableCell><Link to={`/subscription/update/${subscriptions.id}`}>Edit</Link></TableCell>
         </TableRow>
       );
     });
@@ -92,7 +94,7 @@ export default class SubscriptionTable extends Component<
 
   handleDelete = (id: number) => {
     if (this.props.sessionToken) {
-      fetch(`${APIURL}/subscription/${id}`, {
+      fetch(`${APIURL}/subscription/delete/${id}`, {
         method: "DELETE",
         headers: new Headers({
           "Content-Type": "application/json",
@@ -110,18 +112,39 @@ export default class SubscriptionTable extends Component<
     return (
       <div>
         <div>
-          <h3>My Subscription</h3>
-          <TableContainer className="mysub" component={Paper} id="subscriptionTable" style={{width:'1000px'}}>
+          <h3 
+          style={{
+            textAlign: 'center', 
+            fontSize: '30px', 
+            letterSpacing: '3px',
+            }}>My Subscription</h3>
+
+          <TableContainer className="mysub" component={Paper} id="subscriptionTable" style={{width:'1000px', justifyContent: 'center', font: '20px'}}>
           
             <Table style={styles.table} aria-label="simple table">
               <TableHead>
                 <TableRow>
                   {/* <TableCell align="center">id</TableCell> */}
-                  <TableCell align="center">Street Address 1</TableCell>
-                  <TableCell align="center">Street Address 2</TableCell>
-                  <TableCell align="center">City</TableCell>
-                  <TableCell align="center">State</TableCell>
-                  <TableCell align="center">Zip</TableCell>
+                  <TableCell style={{
+                    fontSize: 20,
+                  }}
+                    align="center">Street Address 1</TableCell>
+                  <TableCell style={{
+                    fontSize: 20,
+                  }}
+                  align="center">Street Address 2</TableCell>
+                  <TableCell style={{
+                    fontSize: 20,
+                  }}
+                  align="center">City</TableCell>
+                  <TableCell style={{
+                    fontSize: 20,
+                  }}
+                  align="center">State</TableCell>
+                  <TableCell style={{
+                    fontSize: 20,
+                  }}
+                  align="center">Zip</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>{this.subscriptionMapper()}</TableBody>

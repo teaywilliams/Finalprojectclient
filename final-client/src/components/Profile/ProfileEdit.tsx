@@ -1,16 +1,16 @@
 import React, { Component } from "react";
-// import { FormControl, TextField, Button } from "@material-ui/core";
-// import FormControl from '@material-ui/core';
-import { TextField, Button } from "@material-ui/core";
+import { TextField, Button, colors } from "@material-ui/core";
 import { Link } from "react-router-dom";
+import CardActions from '@material-ui/core/CardActions';
 import { ProfileDetails } from "../../Interfaces";
 import { Edit as EditIcon, Delete as DeleteIcon } from '@material-ui/icons';
-import APIURL from "../../lib/enviroment";
+import APIURL from "../../helpers/enviroment";
+import {RouteComponentProps, withRouter} from "react-router-dom";
 
-
-type AcceptedProps = {
+interface Params{id: string}
+interface AcceptedProps extends RouteComponentProps<Params>{
     sessionToken: string | null;
-    profileId: number;
+    
 };
 
 type ProfileDataState = {
@@ -22,32 +22,19 @@ type ProfileDataState = {
     details: string;
 };
 
-// const useStyles = makeStyles({
-//     root: {
-//         minWidth: 275,
-//     },
-//     bullet: {
-//         display: 'inline-block',
-//         margin: '0 2px',
-//         transform: 'scale(0.8)',
-//     },
-//     title: {
-//         fontSize: 14,
-//     },
-//     pos: {
-//         marginBottom: 12,
-//     },
-// });
-
-export class ProfileEdit extends Component<AcceptedProps, ProfileDataState>{
+ class ProfileEdit extends Component<AcceptedProps, ProfileDataState>{
     constructor(props: AcceptedProps) {
         super(props);
+
+        const string_id= this.props.match.params.id
+        const id= string_id === null || isNaN(parseInt(string_id)) ? 0 : parseInt(string_id)
+
         this.state = {
-            profId: 0,
+            profId: id,
             title: '',
             picture: '',
             details: '',
-            // profile: {},
+        
             profileData: [
                 {
                     id: 0,
@@ -71,7 +58,7 @@ export class ProfileEdit extends Component<AcceptedProps, ProfileDataState>{
     fetchProfile = () => {
         if (this.props.sessionToken) {
             console.log('Before ProfileEdit Fetch');
-            fetch(`${APIURL}/profile/one/${this.props.profileId}`, {
+            fetch(`${APIURL}/profile/one/${this.state.profId}`, {
                 method: 'GET',
                 headers: new Headers({
                     'Content-Type': 'application/json',
@@ -81,21 +68,25 @@ export class ProfileEdit extends Component<AcceptedProps, ProfileDataState>{
             })
                 .then((res) => res.json())
                 .then((results) => {
-                    this.setState({ profId: results.id });
-                    this.setState({ title: results.title });
-                    this.setState({ picture: results.picture });
-                    this.setState({ details: results.details });
-                    console.log('Record Id from ProfileEdit: ', results.id);
+                    const profile = results.profile
+                    console.log('results: ', results)
+                    this.setState({
+                        profId: profile.id,
+                        title: profile.title,
+                        picture: profile.picture,
+                        details: profile.details
+                    })
+                    
                 })
                 .catch((err) => console.log(err));
         }
     };
 
     handleSubmit = (event: any) => {
-        console.log('As ProfileEdit Update');
+        console.log('As ProfileEdit Update', this.state);
         if (this.props.sessionToken) {
             event.preventDefault();
-            fetch(`${APIURL}/profile/update/${this.props.profileId}`, {
+            fetch(`${APIURL}/profile/update/${this.state.profId}`, {
                 method: 'PUT',
                 body: JSON.stringify({
                     title: this.state.title,
@@ -110,36 +101,40 @@ export class ProfileEdit extends Component<AcceptedProps, ProfileDataState>{
                 .then((response) => response.json())
                 .then((data) => {
                     console.log(data);
+                    this.props.history.push('/profile/mine')
                 })
                 .catch((err) => console.log(err));
         }
     };
 
 
-    // handleDelete = (id: number) => {
-    //     if (this.props.sessionToken) {
-    //         fetch(`${APIURL}/profile/delete/${this.props.profileId}`, {
-    //             method: 'DELETE',
-    //             headers: new Headers({
-    //                 'Content-Type': 'application/json',
-    //                 Authorization: this.props.sessionToken,
-    //             }),
-    //         })
-    //             .then((res) => {
-    //                 this.fetchProfile();
-    //             })
-    //             .catch((err) => alert(err));
-    //     }
-    // };
+    handleDelete = (id: number) => {
+        if (this.props.sessionToken) {
+            fetch(`${APIURL}/profile/delete/${this.state.profId}`, {
+                method: 'DELETE',
+                headers: new Headers({
+                    'Content-Type': 'application/json',
+                    Authorization: this.props.sessionToken,
+                }),
+            })
+                .then((res) => {
+                    this.fetchProfile();
+                })
+                .catch((err) => alert(err));
+        }
+    };
 
     render() {
         return (
             <div>
                 <div id='profileEditDiv'>
-                    <h3 id='profileEditHeading'>Edit Boards</h3>
-                    {/* <FormControl style={{ backgroundColor: '#FFFFFF' }}> */}
-                    {/* <Card>
-                        <CardContent> */}
+                    <h2 
+                    style={{
+                        letterSpacing: "5px"
+                        
+                    }}
+                    id='profileEditHeading'>Edit Boards</h2>
+                   
                     <div>
                         <TextField
                             label="Edit Board Name"
@@ -164,11 +159,10 @@ export class ProfileEdit extends Component<AcceptedProps, ProfileDataState>{
                     </div>
                     
                         <TextField
-                            // id='outlined-textarea'
+                            
                             label='Edit Details'
                             type='text'
                             value={this.state.details}
-                            // multiline
                             variant='outlined'
                             onChange={(e) => {
                                 this.setState({ details: e.target.value });
@@ -176,19 +170,28 @@ export class ProfileEdit extends Component<AcceptedProps, ProfileDataState>{
                         />
                 
                     <div id="editButton">
-                        <Button variant='contained' onClick={(e) => { this.handleSubmit(e) }}>
+                        <CardActions style={{justifyContent: "center"}} >
+                            <Link to='/profile/mine'>
+                            <Button
                             
-                            <Link style={{ color: '#000000' }} to='/profile/mine'>
+                             variant='contained' onClick={(e) => { this.handleSubmit(e) }}>
+                            
+                        
                             <EditIcon />
                                 Edit a Profile Entry
-                            </Link>
+                           
                         </Button>
+                            </Link>
+                        </CardActions>
+
+                
                     </div>
-                    {/* <div id="deleteProfileButton">
+                    <div id="deleteProfileButton">
                         <Link to='/profile/mine'>
                             <Button
+                            style={{justifyContent: "center" }}
                                 variant='contained'
-                                // color='primary'
+                               
                                 value={this.state.profId}
                                 onClick={(e) => {
                                     this.handleDelete(this.state.profId);
@@ -198,14 +201,12 @@ export class ProfileEdit extends Component<AcceptedProps, ProfileDataState>{
                                             Delete Profile
                                     </Button>
                         </Link>
-                    </div> */}
-                    {/* </CardContent>
-                    </Card> */}
-                    {/* </FormControl> */}
+                    </div> */
+                    
                 </div>
             </div>
         );
     }
 }
 
-export default ProfileEdit;
+export default withRouter(ProfileEdit);
