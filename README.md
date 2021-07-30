@@ -1,46 +1,45 @@
-# Getting Started with Create React App
+FOR THE LOVE OF BRIE 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Project Challenges:
+React - Legacy (Class Components, Lifecycle methods, State Management, etc),
+At least one React Styling Library (Radium, Material UI, Styled Components, Ant Design),
+Data persistence utilizing PostgreSQL and a NodeJS ORM library (Sequelize),
+Use DB Associations,
+Create full CRUD (Create, Read, Update, Delete) for at least two items in an original application, separate from auth (users),
+Deployment through Heroku,
+Other MVP components exclusive to your project,
+User registration and authentication (REST-ful API)
+Ordering of items by priority (if it fits the theme),
+Admin Portal,
+Use React Class Components, Routing, Guards,
+Strong Typing with TypeScript(TypeScript must be used in every client side file),
+Create and style a README markdown file (README.md),
 
-## Available Scripts
+This is a JavaScript React app written in Typescript using the Model View Controller pattern. For the love of brie is a tool to help you creatively think of charcuterie boards. The idea was sparked out of see the rise in small gatherings because of safety concerns around COVID. With the rise of hosting having a place to plan out and store creative ideas arount charcuterie boards seem like a simple, practical idea for anyone. This is an app that will allow you to create a board that allows you in put img urls and add descriptions to each idea you add. Someone can also sign up for a subscription service that allows you to receive monthly boards that have a arrangement of ideas for someone to use for inspiration.
 
-In the project directory, you can run:
+The app is divided into an admin and a user side. The user can edit their own account, look at the boards they create, edit, add or delete board entries. As well as sign up for a subscription service, edit subscription information or delete subscription. To use the app go to fortheloveofbrie.herokuapp.com. Register a user. Once you've entered a few of charcuterie board ideas you can see how fun it is to build your own special hosting projects. 
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Planning Documents
+https://docs.google.com/document/d/1RQKJbavjV3ArdGx5lafnYFvUgxM3GF9adh-MhdtJ3Gs/edit?usp=sharing
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Trello 
+https://trello.com/b/mkfPis0i/for-the-love-of-brie
 
-### `npm test`
+Server Repo 
+https://github.com/teaywilliams/Finalprojectserver
+Client Repo 
+https://github.com/teaywilliams/Finalprojectclient
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Deployed Website:
+https://fortheloveofbrie.herokuapp.com/home
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Resources Used 
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Material-UI
+https://material-ui.com/
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+react-material-ui-form-validator
+https://www.npmjs.com/package/react-material-ui-form-validator
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
