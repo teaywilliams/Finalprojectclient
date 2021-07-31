@@ -26,6 +26,8 @@ https://docs.google.com/document/d/1RQKJbavjV3ArdGx5lafnYFvUgxM3GF9adh-MhdtJ3Gs/
 Trello 
 https://trello.com/b/mkfPis0i/for-the-love-of-brie
 
+
+
 Server Repo 
 https://github.com/teaywilliams/Finalprojectserver
 
@@ -40,7 +42,18 @@ Resources Used
 
 Material-UI
 https://material-ui.com/
+https://www.youtube.com/watch?v=vyJU9efvUtQ&t=296s
 
 react-material-ui-form-validator
 https://www.npmjs.com/package/react-material-ui-form-validator
+
+Heroku Help
+https://stackoverflow.com/questions/34748739/wake-up-heroku-app
+
+REACT/TYPESCRIPT
+https://www.youtube.com/watch?v=jrKcJxF0lAU&t=424s
+
+UseState in class Components 
+https://www.youtube.com/watch?v=_C6LRsaxPx0
+
 
